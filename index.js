@@ -1,15 +1,16 @@
+const { dbUri } = require('./database_config/database.config')
+
 //Import dependencies
 const express = require('express')
 const bodyParser = require('body-parser');
 //const emailValidator = require("./email-deep-validator");
-
 const cors = require('cors');
 const path = require('path');
 
 // mongo connect
 const mongoose = require('mongoose')
 
-mongoose.connect(`mongodb+srv://intelligense_admin:intelligense_admin@cluster0.wfyd1.mongodb.net/Intelligense?retryWrites=true&w=majority`, { 
+mongoose.connect(dbUri, { 
     useNewUrlParser: true,
     useCreateIndex: true
   })
