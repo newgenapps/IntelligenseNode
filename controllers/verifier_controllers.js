@@ -28,42 +28,49 @@ const saySomething = (req, res, next) => {
 
 //Verifies single email Address
 const verifier = async(req, res, next) => {
- 
+  
   const emailValidator = new EmailValidator();
 
-  let value1 = [];
   const { wellFormed, validDomain, validMailbox } = await emailValidator.verify(req.body.post);
 
   res.send(
     
     `wellformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`,
-
     )
   }
   
-
   //Verifies bulk domains
 const bulkDomainVerifier = async(req, res, next) => {
   
+  var verifiedDom;
+  var unverifiedDom;
+
   verify.verifyDomainsMX(domains).then(function(res) {
-    console.log('Domains Status: ', res);
+
+    verifiedDom = res["verified"].toString();
+    unverifiedDom = res["unverified"].toString();
 });
   res.send(
 
-    `welllformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`,
+    `Verified Domains = ${verifiedDom}, UnVerified Domains = ${unverifiedDom}`,
     )
   }
   
   //Verifies bulk emails
 const bulkEmailVerifier = async(req, res, next) => {
   
+  var verifiedM;
+  var unverifiedM;
+
    verify.verifyEmails(domain, emails, {}, function(err, data){
-      console.log("Email Stats: ", err, data);  
+      console.log("Email Stats: ", err, data); 
+      verifiedM = data["verified"].toString();
+      unverifiedM = data["unverified"].toString(); 
   });
 
   res.send(
 
-    `welllformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`,
+    `Verified Mails = ${verifiedM}, UnVerified Mails = ${unverifiedM}`,
     )
   }
   
