@@ -31,7 +31,8 @@ const singleSearch = async (req, res, next) => {
 // Domain Search
 const domainSearch = async (req, res, next) => {
   Email_List.find({domain: req.body.details.domain})
-  .then( response =>  res.json({response}))
+  .then( response => res.json({response})
+   )
   .catch( err => res.json({message: `Error !!!: ${err}`}))
 }
 

@@ -8,8 +8,8 @@ const organizationSchema = mongoose.Schema({
    size: String,
    languages: Array,
    country: String
-}, { collection : 'Organization-List' });
+}, { collection : 'Companies-Details' });
 
-const Organization_List = mongoose.model( 'domain', organizationSchema )
+const Organization_List = mongoose.model( 'Companies-Details', organizationSchema )
 
 module.exports = Organization_List
