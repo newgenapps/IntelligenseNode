@@ -52,11 +52,14 @@ app.use(cors());
 // Require Route
 const api = require('./routes/verifier_routes');
 const emailSearch = require('./routes/email-search_routes');
+const techSearch = require('./routes/tech-finder_routes');
+
 
 
 // Configure app to use route
 app.use('/api/v1/', api);
 app.use('/email-search/', emailSearch);
+app.use('/tech-search/', techSearch);
 
 
 
