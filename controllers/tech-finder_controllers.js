@@ -13,7 +13,7 @@ const technologySearch = async (req, res, next) => {
       console.log(response)
       res.json({response})
     } )
-    .catch( err => res.json({message: `Error !!!: ${err}`}
+    .catch( err => res.json({message: `Error occured!!!: ${err}`}
     )
     )
   }
