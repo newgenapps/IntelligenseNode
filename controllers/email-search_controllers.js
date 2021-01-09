@@ -27,6 +27,13 @@ const singleSearch = async (req, res, next) => {
   } )
 }
 
+// Bulk mail search api
+const bulkSearch = async (req, res, next) => {
+  Email_List.find({domain: req.body.details.domain})
+  .then( response => res.json({response})
+   )
+  .catch( err => res.json({message: `Error !!!: ${err}`}))
+}
 
 // Domain Search
 const domainSearch = async (req, res, next) => {
@@ -38,3 +45,4 @@ const domainSearch = async (req, res, next) => {
 
 module.exports.singleSearch = singleSearch
 module.exports.domainSearch = domainSearch
+module.exports.bulkSearch = bulkSearch
