@@ -57,7 +57,7 @@ const techSearch = require('./routes/tech-finder_routes');
 
 
 // Configure app to use route
-app.use('/api/v1/', api);
+app.use('/verifier/', api);
 app.use('/email-search/', emailSearch);
 app.use('/tech-search/', techSearch);
 
