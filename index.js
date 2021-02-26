@@ -13,6 +13,7 @@ try {
         max: 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
+        ssl: true
       })
       pool.query('SELECT NOW()', (err, res) => {
         console.log(err, res)
@@ -26,6 +27,7 @@ try {
         port: 25060,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
+        ssl: true
       })
       client.connect()
       .then(()=> console.log("connected - successfully"))
