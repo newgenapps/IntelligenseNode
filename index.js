@@ -2,6 +2,8 @@ const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
 const { Sequelize } = require('sequelize');
 
+const connectionString = 'postgresql://doadmin:jj16ytmf0cukykcx@orgdata-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb'
+
 // Postgres connection
 try {
     // const pool = new Pool({
@@ -23,11 +25,7 @@ try {
     //   .then(()=> console.log("connected - successfully"))
     //   .catch( e => console.log('not - connected', e))
       const client = new Client({
-        user: 'doadmin',
-        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
-        database: 'defaultdb',
-        password: 'jj16ytmf0cukykcx',
-        port: 25060,
+        connectionString,
         ssl: true
       })
       client.connect()
