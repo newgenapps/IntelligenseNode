@@ -47,7 +47,7 @@ const getTechnologies = async (req, res, next) => {
 
   const url = req.body.post;
 
-  console.log(url)
+  console.log(typeof(url))
 
   try {
     await wappalyzer.init()

@@ -1,4 +1,35 @@
 const { dbUri } = require('./database_config/database.config')
+const { Pool, Client } = require('pg')
+
+try {
+    const pool = new Pool({
+        user: 'doadmin',
+        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+        database: 'defaultdb',
+        password: 'jj16ytmf0cukykcx',
+        port: 25060,
+      })
+      pool.query('SELECT NOW()', (err, res) => {
+        console.log(err, res)
+        pool.end()
+      })
+      const client = new Client({
+        user: 'doadmin',
+        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+        database: 'defaultdb',
+        password: 'jj16ytmf0cukykcx',
+        port: 25060,
+      })
+      client.connect()
+      client.query('SELECT NOW()', (err, res) => {
+        console.log(err, res)
+        client.end()
+      })
+} catch (error) {
+    console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
+    console.log(error)
+}
+
 
 //Import dependencies
 const express = require('express')
@@ -8,6 +39,7 @@ const cors = require('cors');
 const path = require('path');
 
 // mongo connect
+
 const mongoose = require('mongoose')
 
 mongoose.connect(dbUri, { 
@@ -19,7 +51,7 @@ mongoose.connect(dbUri, {
 
 const db = mongoose.connection
 db.on( 'error', err => console.log(err)  )
-db.once( 'open', () => console.log('Db connected') )
+db.once( 'open', () => console.log(' MONGO Db connected') )
 
 exports.module = db
 

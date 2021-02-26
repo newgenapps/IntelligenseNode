@@ -3,6 +3,8 @@
 const db = require('../index')
 const Email_List = require('./../models/email-list.schema')
 
+
+
 // filter items by the name and domain
 const filterByName = ( fn, lsn, items ) => items.filter(item => item.first_name.toUpperCase() === fn.toUpperCase() && item.last_name.toUpperCase() === lsn.toUpperCase() )
 
