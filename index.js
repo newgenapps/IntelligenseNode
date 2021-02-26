@@ -55,6 +55,7 @@ var sequelize = new Sequelize('defaultdb', 'doadmin', 'jj16ytmf0cukykcx', {
       min: 0,
       idle: 10000
     },
+    port: 25060
   
     // SQLite only
     // storage: 'path/to/database.sqlite'
