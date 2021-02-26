@@ -38,6 +38,8 @@ try {
     //     client.end()
 
     //   })
+    exports.module = client
+
 } catch (error) {
     console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
     console.log(error)

@@ -2,6 +2,7 @@
 
 // const db = require('../index')
 const Email_List = require('./../models/email-list.schema')
+const {client} = require('../index')
 
 
 
@@ -12,6 +13,7 @@ const filterByName = ( fn, lsn, items ) => items.filter(item => item.first_name.
 // Single mail search api
 const singleSearch = async (req, res, next) => {
   
+
   let fn = req.body.details.firstName
   let lsn = req.body.details.lastName
   Email_List.find({domain: req.body.details.domain})
@@ -39,10 +41,29 @@ const bulkSearch = async (req, res, next) => {
 
 // Domain Search
 const domainSearch = async (req, res, next) => {
-  Email_List.find({domain: req.body.details.domain})
-  .then( response => res.json({response})
-   )
-  .catch( err => res.json({message: `Error !!!: ${err}`}))
+  console.log(req.body.details.domain)
+  console.log(req.body.details.domain)
+    try {
+    
+    const  id  = req.body.details.domain;
+    
+    const response = await client.query("SELECT * FROM MasterData WHERE url= $1", [
+    
+    id
+    
+    ]);
+    
+    res.json(response.rows[0]);
+    
+    } catch (err) {
+    
+    console.error(err.message);
+    
+    }
+  // Email_List.find({domain: req.body.details.domain})
+  // .then( response => res.json({response})
+  //  )
+  // .catch( err => res.json({message: `Error !!!: ${err}`}))
 }
 
 module.exports.singleSearch = singleSearch
