@@ -65,14 +65,14 @@ try {
   
   // Or you can simply use a connection uri
 //   var sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
-const connect = async () =>{
-try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
+// const connect = async () =>{
+// try {
+//     await sequelize.authenticate();
+//     console.log('Connection has been established successfully.');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// }
 
 connect()
 //Import dependencies
