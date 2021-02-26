@@ -22,8 +22,10 @@ try {
       })
       client.connect()
       client.query('SELECT NOW()', (err, res) => {
+          console.log("connected postgres")
         console.log(err, res)
         client.end()
+
       })
 } catch (error) {
     console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
