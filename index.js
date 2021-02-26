@@ -31,7 +31,7 @@ try {
       })
       client.connect()
       .then(()=> console.log("connected - successfully"))
-      .catch( e => console.log('not - connected'))
+      .catch( e => console.log('not - connected', e))
       client.query('SELECT NOW()', (err, res) => {
           console.log("connected postgres")
         console.log(err, res)
