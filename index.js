@@ -10,6 +10,9 @@ try {
         database: 'defaultdb',
         password: 'jj16ytmf0cukykcx',
         port: 25060,
+        max: 20,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 2000,
       })
       pool.query('SELECT NOW()', (err, res) => {
         console.log(err, res)
@@ -21,6 +24,8 @@ try {
         database: 'defaultdb',
         password: 'jj16ytmf0cukykcx',
         port: 25060,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 2000,
       })
       client.connect()
       .then(()=> console.log("connected - successfully"))
