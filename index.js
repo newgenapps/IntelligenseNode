@@ -1,49 +1,77 @@
 const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
-
+const { Sequelize } = require('sequelize');
 
 // Postgres connection
-try {
-    const pool = new Pool({
-        user: 'doadmin',
-        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
-        database: 'defaultdb',
-        password: 'jj16ytmf0cukykcx',
-        port: 25060,
-        max: 20,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-        ssl: true
-      })
-      pool.query('SELECT NOW()', (err, res) => {
-        console.log(err, res)
-        pool.end()
-      })
-      const client = new Client({
-        user: 'doadmin',
-        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
-        database: 'defaultdb',
-        password: 'jj16ytmf0cukykcx',
-        port: 25060,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-        ssl: true
-      })
-      client.connect()
-      .then(()=> console.log("connected - successfully"))
-      .catch( e => console.log('not - connected', e))
-      client.query('SELECT NOW()', (err, res) => {
-          console.log("connected postgres")
-        console.log(err, res)
-        client.end()
+// try {
+//     const pool = new Pool({
+//         user: 'doadmin',
+//         host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+//         database: 'defaultdb',
+//         password: 'jj16ytmf0cukykcx',
+//         port: 25060,
+//         max: 20,
+//         idleTimeoutMillis: 30000,
+//         connectionTimeoutMillis: 2000,
+//         ssl: true
+//       })
+//       pool.query('SELECT NOW()', (err, res) => {
+//         console.log(err, res)
+//         pool.end()
+//       })
+//       pool.connect()
+//       .then(()=> console.log("connected - successfully"))
+//       .catch( e => console.log('not - connected', e))
+//       const client = new Client({
+//         user: 'doadmin',
+//         host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+//         database: 'defaultdb',
+//         password: 'jj16ytmf0cukykcx',
+//         port: 25060,
+//         idleTimeoutMillis: 30000,
+//         connectionTimeoutMillis: 2000,
+//         ssl: true
+//       })
+//       client.connect()
+//       .then(()=> console.log("connected - successfully"))
+//       .catch( e => console.log('not - connected', e))
+//       client.query('SELECT NOW()', (err, res) => {
+//           console.log("connected postgres")
+//         console.log(err, res)
+//         client.end()
 
-      })
-} catch (error) {
-    console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
-    console.log(error)
+//       })
+// } catch (error) {
+//     console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
+//     console.log(error)
+// }
+
+var sequelize = new Sequelize('defaultdb', 'doadmin', 'jj16ytmf0cukykcx', {
+    host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+    dialect: 'postgres',
+  
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+  
+    // SQLite only
+    // storage: 'path/to/database.sqlite'
+  });
+  
+  // Or you can simply use a connection uri
+//   var sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
+const connect = async () =>{
+try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 }
 
-
+connect()
 //Import dependencies
 const express = require('express')
 const bodyParser = require('body-parser');
