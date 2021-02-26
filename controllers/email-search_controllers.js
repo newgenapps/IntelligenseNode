@@ -1,6 +1,6 @@
 
 
-const db = require('../index')
+// const db = require('../index')
 const Email_List = require('./../models/email-list.schema')
 
 

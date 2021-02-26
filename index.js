@@ -1,6 +1,8 @@
 const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
 
+
+// Postgres connection
 try {
     const pool = new Pool({
         user: 'doadmin',
@@ -21,6 +23,8 @@ try {
         port: 25060,
       })
       client.connect()
+      .then(()=> console.log("connected - successfully"))
+      .catch( e => console.log('not - connected'))
       client.query('SELECT NOW()', (err, res) => {
           console.log("connected postgres")
         console.log(err, res)
@@ -42,20 +46,20 @@ const path = require('path');
 
 // mongo connect
 
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
-mongoose.connect(dbUri, { 
-    useNewUrlParser: true,
-    useCreateIndex: true
-  })
-.then(() => console.log('MongoDB connected...'))
-.catch(err => console.log(err))
+// mongoose.connect(dbUri, { 
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+//   })
+// .then(() => console.log('MongoDB connected...'))
+// .catch(err => console.log(err))
 
-const db = mongoose.connection
-db.on( 'error', err => console.log(err)  )
-db.once( 'open', () => console.log(' MONGO Db connected') )
+// const db = mongoose.connection
+// db.on( 'error', err => console.log(err)  )
+// db.once( 'open', () => console.log(' MONGO Db connected') )
 
-exports.module = db
+// exports.module = db
 
 //create a new express application named 'app'
 const app = express();

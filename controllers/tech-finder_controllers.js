@@ -1,5 +1,5 @@
 
-const db = require('../index')
+// const db = require('../index')
 const Organization_List = require('./../models/organization-list.schema')
 
 // ########################################################################## // 
