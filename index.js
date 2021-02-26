@@ -51,7 +51,7 @@ var sequelize = new Sequelize('defaultdb', 'doadmin', 'jj16ytmf0cukykcx', {
     dialect: 'postgres',
     dialectOptions: {
         ssl: true
-      }
+      },
     pool: {
       max: 5,
       min: 0,
