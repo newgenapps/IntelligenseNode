@@ -4,35 +4,33 @@ const { Sequelize } = require('sequelize');
 
 // Postgres connection
 try {
-    const pool = new Pool({
-        user: 'doadmin',
-        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
-        database: 'defaultdb',
-        password: 'jj16ytmf0cukykcx',
-        port: 25060,
-        max: 20,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-        ssl: true
-      })
-      pool.query('SELECT NOW()', (err, res) => {
-        console.log(err, res)
-        pool.end()
-      })
-      pool.connect()
-      .then(()=> console.log("connected - successfully"))
-      .catch( e => console.log('not - connected', e))
-    //   const client = new Client({
+    // const pool = new Pool({
     //     user: 'doadmin',
     //     host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
     //     database: 'defaultdb',
     //     password: 'jj16ytmf0cukykcx',
     //     port: 25060,
+    //     max: 20,
     //     idleTimeoutMillis: 30000,
     //     connectionTimeoutMillis: 2000,
     //     ssl: true
     //   })
-      pool.connect()
+    //   pool.query('SELECT NOW()', (err, res) => {
+    //     console.log(err, res)
+    //     pool.end()
+    //   })
+    //   pool.connect()
+    //   .then(()=> console.log("connected - successfully"))
+    //   .catch( e => console.log('not - connected', e))
+      const client = new Client({
+        user: 'doadmin',
+        host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
+        database: 'defaultdb',
+        password: 'jj16ytmf0cukykcx',
+        port: 25060,
+        ssl: true
+      })
+      client.connect()
       .then(()=> console.log("connected - successfully"))
       .catch( e => console.log('not - connected', e))
     //   client.query('SELECT NOW()', (err, res) => {
