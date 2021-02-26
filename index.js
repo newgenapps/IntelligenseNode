@@ -2,7 +2,7 @@ const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
 const { Sequelize } = require('sequelize');
 
-const connectionString = 'postgresql://doadmin:jj16ytmf0cukykcx@orgdata-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb'
+const connectionString = 'postgresql://doadmin:fqk5xvy7un9hoayn@db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=require'
 
 // Postgres connection
 try {
@@ -42,6 +42,7 @@ try {
     console.log('POSTGRESS HAD SOME ISSUE TO CONNECT')
     console.log(error)
 }
+
 
 // var sequelize = new Sequelize('defaultdb', 'doadmin', 'jj16ytmf0cukykcx', {
 //     host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
