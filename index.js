@@ -24,6 +24,7 @@ try {
     //   pool.connect()
     //   .then(()=> console.log("connected - successfully"))
     //   .catch( e => console.log('not - connected', e))
+    console.log(connectionString)
       const client = new Client({
         connectionString,
         ssl: true
