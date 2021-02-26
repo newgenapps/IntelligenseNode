@@ -49,7 +49,9 @@ const { Sequelize } = require('sequelize');
 var sequelize = new Sequelize('defaultdb', 'doadmin', 'jj16ytmf0cukykcx', {
     host: 'orgdata-do-user-7237104-0.b.db.ondigitalocean.com',
     dialect: 'postgres',
-  
+    dialectOptions: {
+        ssl: true
+      }
     pool: {
       max: 5,
       min: 0,
