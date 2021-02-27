@@ -2,7 +2,7 @@ const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
 const { Sequelize } = require('sequelize');
 
-const connectionString = 'postgresql://doadmin:fqk5xvy7un9hoayn@db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb?ssl=prefer(default)'
+const connectionString = 'postgresql://doadmin:fqk5xvy7un9hoayn@db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb?ssl=false'
 
 // Postgres connection
 try {
