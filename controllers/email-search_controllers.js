@@ -21,6 +21,7 @@ const singleSearch = async (req, res, next) => {
       domain
     ]);
 
+    console.log(response.rows[0])
     res.json(response.rows[0]);
     client.end()
   } catch (err) {
@@ -54,7 +55,7 @@ const bulkSearch = async (req, res, next) => {
     const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
       id
     ]);
-
+    console.log(response)
     res.json(response);
     client.end()
   } catch (err) {
@@ -74,11 +75,12 @@ const domainSearch = async (req, res, next) => {
   try {
 
     const id = req.body.details.domain;
+    console.log(id)
 
     const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
       id
     ]);
-
+    console.log(response)
     res.json(response);
     client.end()
   } catch (err) {
