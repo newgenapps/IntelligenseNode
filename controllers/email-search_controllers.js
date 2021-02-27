@@ -10,46 +10,77 @@ const singleSearch = async (req, res, next) => {
 
   let fn = req.body.details.firstName
   let lsn = req.body.details.lastName
-  Email_List.find({ domain: req.body.details.domain })
-    .then(response => {
-      let items = response.map(item => item.email_list)[0]
-      let finalList = filterByName(fn, lsn, items)
-      res.json({
-        finalList
-      })
-    })
-    .catch(err => {
-      res.json({
-        message: "Error !!!"
-      })
-    })
+  let domain = req.body.details.url
+
+  const client = dbConnect()
+  try {
+
+    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE UPPER(firstname)=UPPER($1) AND UPPER(lastname)= UPPER($2) AND UPPER(url)= UPPER($3)', [
+      fn,
+      lsn,
+      domain
+    ]);
+
+    res.json(response.rows[0]);
+    client.end()
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+
+  // Email_List.find({ domain: req.body.details.domain })
+  //   .then(response => {
+  //     let items = response.map(item => item.email_list)[0]
+  //     let finalList = filterByName(fn, lsn, items)
+  //     res.json({
+  //       finalList
+  //     })
+  //   })
+  //   .catch(err => {
+  //     res.json({
+  //       message: "Error !!!"
+  //     })
+  //   })
 }
 
 // Bulk mail search api
 const bulkSearch = async (req, res, next) => {
-  Email_List.find({ domain: req.body.details.domain })
-    .then(response => res.json({ response })
-    )
-    .catch(err => res.json({ message: `Error !!!: ${err}` }))
-}
-
-// Domain Search
-const domainSearch = async (req, res, next) => {
-  console.log(req.body.details.domain)
-  console.log(req.body.details.domain)
-
-
   const client = dbConnect()
   try {
 
     const id = req.body.details.domain;
 
-    const response = await client.query('SELECT * FROM public."MasterData" WHERE url= $1', [
+    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
       id
     ]);
 
-    res.json(response.rows[0]);
+    res.json(response);
+    client.end()
+  } catch (err) {
 
+    console.error(err.message);
+
+  }
+  // Email_List.find({ domain: req.body.details.domain })
+  //   .then(response => res.json({ response })
+  //   )
+  //   .catch(err => res.json({ message: `Error !!!: ${err}` }))
+}
+
+// Domain Search
+const domainSearch = async (req, res, next) => {
+  const client = dbConnect()
+  try {
+
+    const id = req.body.details.domain;
+
+    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
+      id
+    ]);
+
+    res.json(response);
+    client.end()
   } catch (err) {
 
     console.error(err.message);

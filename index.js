@@ -1,5 +1,6 @@
 const {dbConnect} = require('./postgres-config/db.connect')
 const client = dbConnect()
+client.end()
 
 //Import dependencies
 const express = require('express')
