@@ -1,8 +1,9 @@
 const { dbUri } = require('./database_config/database.config')
 const { Pool, Client } = require('pg')
+var fs = require('fs');
 const { Sequelize } = require('sequelize');
 
-const connectionString = 'postgresql://doadmin:fqk5xvy7un9hoayn@db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb?ssl=true'
+const connectionString = 'postgresql://doadmin:fqk5xvy7un9hoayn@db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com:25060/defaultdb'
 
 // Postgres connection
 try {
@@ -26,12 +27,20 @@ try {
     //   .catch( e => console.log('not - connected', e))
     console.log(connectionString)
       const client = new Client({
-        connectionString,
-        ssl: true
+        // connectionString,
+        user: 'doadmin',
+      host: 'db-postgresql-nyc3-49084-do-user-7237104-0.b.db.ondigitalocean.com',
+      database: 'defaultdb',
+      password: 'fqk5xvy7un9hoayn',
+      port: 25060,
+        ssl: {
+            ca: fs.readFileSync('ca-certificate.crt').toString(),
+          },
       })
       client.connect()
       .then(()=> console.log("connected - successfully"))
       .catch( e => console.log('not - connected', e))
+      
     //   client.query('SELECT NOW()', (err, res) => {
     //       console.log("connected postgres")
     //     console.log(err, res)
