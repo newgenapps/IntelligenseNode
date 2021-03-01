@@ -12,10 +12,10 @@ const singleSearch = async (req, res, next) => {
   let lsn = req.body.details.lastName
   let domain = req.body.details.url
 
-  const client = dbConnect()
+  const pool = dbConnect()
   try {
 
-    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE UPPER(firstname)=UPPER($1) AND UPPER(lastname)= UPPER($2) AND UPPER(url)= UPPER($3)', [
+    const response = await pool.query('SELECT * FROM public."EmailsTable" WHERE UPPER(firstname)=UPPER($1) AND UPPER(lastname)= UPPER($2) AND UPPER(url)= UPPER($3)', [
       fn,
       lsn,
       domain
@@ -23,7 +23,6 @@ const singleSearch = async (req, res, next) => {
 
     console.log(response.rows[0])
     res.json(response.rows[0]);
-    client.end()
   } catch (err) {
 
     console.error(err.message);

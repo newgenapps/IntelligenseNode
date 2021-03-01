@@ -14,7 +14,10 @@ const config = {
   port: port,
   ssl: {
     ca: fs.readFileSync('./ca-certificate.crt').toString(),
-  }
+  },
+  max: 5,
+  connectionTimeoutMillis: 0,
+  idelTimeoutMillis: 300000
   }
   
 
