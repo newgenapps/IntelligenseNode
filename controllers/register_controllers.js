@@ -36,7 +36,7 @@ const register = async (req, res, next) => {
       verificationStatus = 'User already exists.'
     }
     else {
-
+      verificationStatus = 'User created'
       // ----- BCRYPT
       const salt = await bcrypt.genSalt(10);
       // now we set user password to hashed password

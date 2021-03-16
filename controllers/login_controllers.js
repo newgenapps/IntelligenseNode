@@ -1,14 +1,13 @@
 
 
 const { dbConnect } = require('../postgres-config/db.connect')
-
+const bcrypt = require('bcrypt');
 
 //Verifies user login
 const login = async (req, res, next) => {
 
     let email = req.body.details.email
     let paswrd = req.body.details.password
-  
     const pool = dbConnect()
     try {
   
@@ -18,16 +17,16 @@ const login = async (req, res, next) => {
       .then( response => {
         console.log(response.rows[0])
      
-        let isPaswrdVerified = comparePassword (response.rowCount[0].password)
-        let isVerified = response.rowCount[0].isverified
-       if(isPaswrdVerified == true && isVerified === "true")
-        res.json('User verified')
-        else
-        res.json('User unverified')
+        let isPaswrdVerified = comparePassword (response.rows[0].password, paswrd)
+        let isVerified = response.rows[0].isverified
+       if(isPaswrdVerified == true && isVerified === "true"){
+        res.json({
+          "user": true
+        })}else{
+        res.json({
+          "user": false
+        })}
       } )  
-      
-
-
     } catch (err) {
   
       console.error(err.message);
