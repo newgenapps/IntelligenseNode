@@ -108,7 +108,7 @@ function sendVerificationEmail(email, token, jwtToken) {
 
     console.log('test3')
 
-    link=`http://localhost:5000/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
+    link=`https://api.intelligense.io/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
     let mailOptions = {
       from: '<testverifier13@gmail.com>', // sender address
       to: `<${email}>`, // list of receivers
@@ -116,7 +116,7 @@ function sendVerificationEmail(email, token, jwtToken) {
       // context: {
       //   verificationLink: `http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
       // },
-      html: `verify ur acc by clicking here <a href=${link}>I AM THE LINK </a>`
+      html: `Verify your account by clicking here <a href=${link}>ACTIVATE </a>`
       //template: 'verification'
     };
 
