@@ -37,7 +37,7 @@ const verifier = async (req, res, next) => {
   )
 }
 
-//Verifies single email Address
+//Verifies bulk email Address
 const bulkverifier = async (req, res, next) => {
 
   const emailValidator = new EmailValidator();

@@ -57,24 +57,15 @@ app.use(cors());
 const api = require('./routes/verifier_routes');
 const emailSearch = require('./routes/email-search_routes');
 const techSearch = require('./routes/tech-finder_routes');
-
+const registerUser = require('./routes/register_routes.js');
 
 
 // Configure app to use route
 app.use('/api-v1/', api);
 app.use('/email-search/', emailSearch);
 app.use('/tech-search/', techSearch);
+app.use('/register-user/', registerUser);
 
-
-
-// // This middleware informs the express application to serve our compiled React files
-// if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-//     app.use(express.static(path.join(__dirname, 'client/build')));
-
-//     app.get('/*', function (req, res) {
-//         res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-//     });
-// };
 
 // Catch any bad requests
 app.get('*', (req, res) => {
