@@ -116,7 +116,7 @@ function sendVerificationEmail(email, token, jwtToken) {
       // context: {
       //   verificationLink: `http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
       // },
-      html: `verify ur acc by clicking here <a href=${link}>I AM THE LINK </a>`
+      html: `verify your acc by clicking here <a href=${link}>activate </a>`
       //template: 'verification'
     };
 
@@ -158,7 +158,9 @@ const verification = ( req, res, next) => {
           "true",
           email
         ])
-        .then( () => res.send("YOUR ACCOUNT IS VERIFIED"))
+        .then( () => {
+          res.send("YOUR ACCOUNT IS VERIFIED")
+        })
       }else{
         res.send("SOMETHING WENT WRONG")
       }
