@@ -105,13 +105,16 @@ function sendVerificationEmail(email, token, jwtToken) {
   return new Promise((resolve, reject) => {
 
     console.log('test3')
+
+    link=`http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
     let mailOptions = {
       from: '<testverifier13@gmail.com>', // sender address
       to: `<${email}>`, // list of receivers
       subject: 'Verify Your Account', // Subject line
-      context: {
-        verificationLink: `http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
-      },
+      // context: {
+      //   verificationLink: `http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
+      // },
+      html: `verify ur acc by clicking here <a href=${link}>I AM THE LINK </a>`
       //template: 'verification'
     };
 
