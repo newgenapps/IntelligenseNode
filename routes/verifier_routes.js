@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const controllers = require('./../controllers/verifier_controllers');
+const auth = require('../auth');
 
-router.get('/say-something', controllers.saySomething);
-router.post('/verifier', controllers.verifier);
-router.post('/bulkEmailVerifier', controllers.bulkEmailVerifier);
-router.post('/bulkDomainVerifier', controllers.bulkDomainVerifier);
-router.post('/bulkverifier', controllers.bulkverifier);
+router.get('/say-something', auth,controllers.saySomething);
+router.post('/verifier',auth,controllers.verifier);
+router.post('/bulkEmailVerifier', auth,controllers.bulkEmailVerifier);
+router.post('/bulkDomainVerifier', auth,controllers.bulkDomainVerifier);
+router.post('/bulkverifier', auth,controllers.bulkverifier);
 
 module.exports = router;
