@@ -1,13 +1,16 @@
 let AUTH_SECRET = [
     '-----BEGIN PRIVATE KEY-----',
-    'MIIBVAIBADANBgkqhkhuashfasfFAASCAT4wggE6AgEAAkEAkcd7iupXSHhgIRat',
-    'b2gnEiyC3AIf7GCrISTtgMsdascczcZnU8sIqwwd3BV6qD+pExeyvMyU085RHRX',
-    'ud1cyQIDAQABAkAzmni6GPAiwDHPJLbqK+VAwq7j8ICasft23523r1fas/O4V75m',
-    'e2ExeqV05+jlzVOGrQ953n8Mx1u0uRgPlfoBAiEAyO3qytGKRRzlqBuGwPFPde4a',
-    '66ZW4AmRcBwwuKp1zgkCIQC5u/2j/JFzM4GTbpoC0a2u78+tqYQW7Y/Usu6AAubI',
-    'wQIhAMKbhMQJ7UUBNwH6GjunHyry5pUEl7Iasd99jejkllask3ui237uiufe00w6',
-    'qc1kJJarxHfgQIgcw2oEtn8GbvNMOsFYBSMHowxiza8yxdcNg0Q9TPMdQ+uhxhWK',
-    'xhVgWkIkTVU=',
+
+    'WnZr4u7x!z%C*F-JaNdRgUkXp2s5v8y/B?D(G+KbPeShVmYq3t6w9z$C&F)H@McQ',
+'eThWmZq4t7w!z$C&F)J@NcRfUjXn2r5u8x/A?D*G-KaPdSgVkYp3s6v9y$B&E)H+',
+'KbPeShVmYq3t6w9z$B&E)H@McQfTjWnZr4u7x!A%D*F-JaNdRgUkXp2s5v8y/B?E',
+'*G-KaPdSgVkYp3s6v9y/B?E(H+MbQeThWmZq4t7w!z%C&F)J@NcRfUjXn2r5u8x/',
+'z%C*F-JaNdRgUkXp2s5v8y/A?D(G+KbPeShVmYq3t6w9z$C&E)H@McQfTjWnZr4u',
+'7w9z$C&F)J@NcRfUjXn2r5u8x/A%D*G-KaPdSgVkYp3s6v9y$B&E(H+MbQeThWmZ',
+'q3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNdRgUkXp2s5v8y/B?E(G+KbPeSh',
+'VkYp3s6v8y/B?E(H+MbQeThWmZq4t7w!z$C&F)J@NcRfUjXn2r5u8x/A?D*G-KaP',
+'dRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjWnZr4u7x!A%D*F-',
+'J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z%C',
     '-----END PRIVATE KEY-----',
   ].join('\n');
 // export default AUTH_SECRET
