@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controllers = require('./../controllers/verifier_controllers');
-const auth = require('../auth');
+const auth = require('../authentication/auth');
 
 router.get('/say-something', auth,controllers.saySomething);
 router.post('/verifier',auth,controllers.verifier);
