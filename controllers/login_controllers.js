@@ -20,7 +20,7 @@ const { AUTH_SECRET } = require('../authentication/auth.secret')
 
 //Verifies user login
 const login = async (req, res, next) => {
-
+console.log(req.body.details)
     let email = req.body.details.email
     let paswrd = req.body.details.password
     const pool = dbConnect()
@@ -31,7 +31,7 @@ const login = async (req, res, next) => {
       ])
       .then( response => {
         console.log(response.rows[0])
-     
+     if( response.rows.length > 0){
         let isPaswrdVerified = comparePassword (response.rows[0].password, paswrd)
         let isVerified = response.rows[0].isverified
         let token = jwt.sign({ id: response.rows[0].id }, AUTH_SECRET);
@@ -51,6 +51,12 @@ const login = async (req, res, next) => {
           status: 404,
           message: "invaid user"
         })}
+      }else{
+        res.send({
+          status: 404,
+          message: "invaid user"
+        })
+      }
       } )  
     } catch (err) {
   
