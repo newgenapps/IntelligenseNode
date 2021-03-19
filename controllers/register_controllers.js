@@ -1,15 +1,14 @@
 const { dbConnect } = require('../postgres-config/db.connect')
 
 var nodemailer = require('nodemailer');
+var verificationStatus = '';
+
 
 const randomstring = require('randomstring')
 const jwt = require('jsonwebtoken');
-
 const bcrypt = require('bcrypt');
-
 const { uuid } = require('uuidv4');
 
-var verificationStatus = '';
 
 //User Registration
 const register = async (req, res, next) => {
@@ -95,10 +94,12 @@ const register = async (req, res, next) => {
 
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.pepipost.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: 'testverifier13@gmail.com',
-    pass: 'fnlflsfybjwxxhrt'
+    user: 'swatisrivastava',
+    pass: 'swatisrivastava_5dca659a99476896a361f0497838885a'
   }
 });
 
@@ -110,12 +111,9 @@ function sendVerificationEmail(email, token, jwtToken) {
 
     link=`https://api.intelligense.io/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
     let mailOptions = {
-      from: '<testverifier13@gmail.com>', // sender address
+      from: '<info@mail.intelligense.io>', // sender address
       to: `<${email}>`, // list of receivers
       subject: 'Verify Your Account', // Subject line
-      // context: {
-      //   verificationLink: `http://localhost:5000/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
-      // },
       html: `Verify your account by clicking here <a href=${link}>ACTIVATE </a>`
       //template: 'verification'
     };
@@ -133,6 +131,7 @@ function sendVerificationEmail(email, token, jwtToken) {
   })
 }
 
+//Account activation after email verification
 const verification = ( req, res, next) => {
   let jwtToken = req.query.jwtToken
   let email = req.query.email
