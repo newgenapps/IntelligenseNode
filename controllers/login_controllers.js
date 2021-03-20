@@ -71,4 +71,12 @@ console.log(req.body.details)
     return bcrypt.compareSync(password, hashPassword);
   }
 
+  function verifyToken(req, res, next){
+    res.send({
+      status: true,
+      message: "Valid User"
+    })
+  }
+
   module.exports.login = login;
+  module.exports.verifyToken = verifyToken;
