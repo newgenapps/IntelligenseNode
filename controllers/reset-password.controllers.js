@@ -53,7 +53,7 @@ function sendResetEmail(firstname, lastname, email, id) {
     let clientName = `${firstname} ${lastname}`
 
     let token = jwt.sign({ id: id }, AUTH_SECRET, { expiresIn: "1h" });
-    let link = `http://localhost:3000/reset-password/${token}/${email}`
+    let link = `https://intelligense.io/reset-password/${token}/${email}`
     return new Promise((resolve, reject) => {
   
       let mailOptions = {
