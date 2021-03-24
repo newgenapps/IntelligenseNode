@@ -1,3 +1,4 @@
+// text center align
 const { dbConnect } = require('../postgres-config/db.connect')
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
@@ -60,11 +61,10 @@ function sendResetEmail(firstname, lastname, email, id) {
         from: '<info@mail.intelligense.io>', // sender address
         to: `<${email}>`, // list of receivers
         subject: 'Reset Your Password', // Subject line
-        html: `<p>Hi. ${clientName}<p><p>We have recieved request to reset your password.<br/><br/>
-        <br/><br/>
+        html: `<p>Hi ${clientName},</p><p>We have received request to reset your password.<br/><br/>
         Click below to reset your password:<br/><br/>
         ${link}</br><br/>
-        <br/><br/>If you haven't requested a password request please ignore this mail.<br/><br/></p>
+        If you haven't requested a password request please ignore this mail.<br/><br/></p>
         <p style="color: red;"> <b>*</b> Note this mail is vaild only for 1hr. <b>*</b></p>
         <p><b>Thanks! – The Intelligense team</b></p>`
       };
