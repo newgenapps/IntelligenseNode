@@ -21,27 +21,13 @@ const singleSearch = async (req, res, next) => {
       domain
     ]);
 
-    console.log(response.rows[0])
-    res.json(response.rows[0]);
+    await console.log(response.rows[0])
+    await res.json(response.rows[0]);
   } catch (err) {
 
     console.error(err.message);
 
   }
-
-  // Email_List.find({ domain: req.body.details.domain })
-  //   .then(response => {
-  //     let items = response.map(item => item.email_list)[0]
-  //     let finalList = filterByName(fn, lsn, items)
-  //     res.json({
-  //       finalList
-  //     })
-  //   })
-  //   .catch(err => {
-  //     res.json({
-  //       message: "Error !!!"
-  //     })
-  //   })
 }
 
 // Bulk mail search api
@@ -54,18 +40,14 @@ const bulkSearch = async (req, res, next) => {
     const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
       id
     ]);
-    console.log(response)
-    res.json(response);
-    client.end()
+    await console.log(response)
+    await res.json(response);
+    await client.end()
   } catch (err) {
 
     console.error(err.message);
 
   }
-  // Email_List.find({ domain: req.body.details.domain })
-  //   .then(response => res.json({ response })
-  //   )
-  //   .catch(err => res.json({ message: `Error !!!: ${err}` }))
 }
 
 // Domain Search

@@ -58,14 +58,14 @@ const api = require('./routes/verifier_routes');
 const emailSearch = require('./routes/email-search_routes');
 const techSearch = require('./routes/tech-finder_routes');
 const registerUser = require('./routes/register_routes.js');
-
+const user = require('./routes/reset-password.routes');
 
 // Configure app to use route
 app.use('/api-v1/', api);
 app.use('/email-search/', emailSearch);
 app.use('/tech-search/', techSearch);
 app.use('/register-user/', registerUser);
-
+app.use('/user/', user);
 
 // Catch any bad requests
 app.get('*', (req, res) => {
