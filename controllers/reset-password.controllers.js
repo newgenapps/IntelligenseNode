@@ -126,6 +126,5 @@ function sendResetEmail(firstname, lastname, email, id) {
       }
       
   }
-
   module.exports.resetPasswordReqhandler = resetPasswordReqhandler;
   module.exports.resetPassword = resetPassword;

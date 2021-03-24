@@ -31,12 +31,20 @@ const register = async (req, res, next) => {
       email,
     ]);
     if (dbResponse.rows.length >= 1) {
-      console.log(dbResponse.rows)
       verificationStatus = {
         status: 200,
         message: 'User already exists.',
         isAlreadyCreated: true
       }
+
+      res.send({
+        verificationStatus
+      })
+
+      console.log(verificationStatus)
+      console.log("user already exist")
+
+      return
     }
     else {
       verificationStatus = {
@@ -71,11 +79,8 @@ const register = async (req, res, next) => {
   try {
     await sendVerificationEmail(firstname, lastname, email, secretToken, jwtTokenEmailVerify)
       .then(() => {
-        res.json({
-          response: {
-            body: verificationStatus
-
-          }
+        res.json({ 
+          verificationStatus
         }
         )
       })
