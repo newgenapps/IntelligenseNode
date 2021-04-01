@@ -1,9 +1,6 @@
 const Email_List = require('./../models/email-list.schema')
 const { dbConnect } = require('../postgres-config/db.connect')
 
-// filter items by the name and domain
-const filterByName = (fn, lsn, items) => items.filter(item => item.first_name.toUpperCase() === fn.toUpperCase() && item.last_name.toUpperCase() === lsn.toUpperCase())
-
 // Single mail search api
 const singleSearch = async (req, res, next) => {
 
@@ -37,7 +34,7 @@ const bulkSearch = async (req, res, next) => {
 
     const id = req.body.details.domain;
 
-    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
+    const response = await client.query('SELECT url, email, firstname, lastname, position FROM public."EmailsTable" WHERE url= $1', [
       id
     ]);
     await console.log(response)
