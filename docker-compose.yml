@@ -1,0 +1,12 @@
+
+version: "3.3"
+services:
+    nodeserver:
+        image: "newgenapps/intelligense-productn:node"
+        ports:
+            - "5000:5000"
+    nginx:
+        restart: always
+        image: "newgenapps/intelligense-productn:nginx"
+        ports:
+            - "80:80"
