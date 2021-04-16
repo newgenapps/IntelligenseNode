@@ -12,7 +12,7 @@ const singleSearch = async (req, res, next) => {
   const pool = dbConnect()
   try {
 
-    const response = await pool.query('SELECT * FROM public."EmailsTable" WHERE UPPER(firstname)=UPPER($1) AND UPPER(lastname)= UPPER($2) AND UPPER(url)= UPPER($3)', [
+    const response = await pool.query('SELECT * FROM public."Emails" WHERE UPPER(firstname)=UPPER($1) AND UPPER(lastname)= UPPER($2) AND UPPER(url)= UPPER($3)', [
       fn,
       lsn,
       domain

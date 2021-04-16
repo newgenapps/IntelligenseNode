@@ -120,7 +120,7 @@ var transporter = nodemailer.createTransport({
 function sendVerificationEmail(firstname, lastname, email, token, jwtToken) {
 
   let clientName = `${firstname} ${lastname}`
-  let link = `https://api.intelligense.io/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
+  let link = `https://intelligense-backend.n1j6mqtj1kv1g.us-east-1.cs.amazonlightsail.com/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
   return new Promise((resolve, reject) => {
 
     console.log('test3')
