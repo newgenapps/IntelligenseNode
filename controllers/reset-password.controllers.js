@@ -18,6 +18,7 @@ const transporter = nodemailer.createTransport({
 
 const resetPasswordReqhandler = async (req, res, next) =>{
     let email = req.body.details.email
+    let currentHost = req.protocol + '://' + req.get('host')
     console.log(email)
     const pool = dbConnect()
     
@@ -30,7 +31,7 @@ const resetPasswordReqhandler = async (req, res, next) =>{
             response => {
                 console.log(response.rows)
                 if (response.rows.length > 0) {
-                    sendResetEmail(response.rows[0].firstname, response.rows[0].lastname, email, response.rows[0].id)
+                    sendResetEmail(response.rows[0].firstname, response.rows[0].lastname, email, response.rows[0].id,currentHost)
                     res.send({
                         status: 200,
                         message: 'mail sent'
@@ -49,12 +50,12 @@ const resetPasswordReqhandler = async (req, res, next) =>{
     }
 }
 
-function sendResetEmail(firstname, lastname, email, id) {
+function sendResetEmail(firstname, lastname, email, id, currentHost) {
 
     let clientName = `${firstname} ${lastname}`
 
     let token = jwt.sign({ id: id }, AUTH_SECRET, { expiresIn: "1h" });
-    let link = `https://intelligense.io/reset-password/${token}/${email}`
+    let link = `http://${currentHost}/reset-password/${token}/${email}`
     return new Promise((resolve, reject) => {
   
       let mailOptions = {

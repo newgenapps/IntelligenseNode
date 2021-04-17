@@ -1,5 +1,5 @@
 const {dbConnect} = require('./postgres-config/db.connect')
-
+var os = require("os");
 //Import dependencies
 const express = require('express')
 const bodyParser = require('body-parser');
@@ -69,6 +69,7 @@ app.use('/user/', user);
 
 // Catch any bad requests
 app.get('*', (req, res) => {
+    console.log(req.protocol + '://' + req.get('host'))
     res.status(200).json({
         msg: 'Catch All'
     });

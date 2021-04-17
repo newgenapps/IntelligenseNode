@@ -1,5 +1,7 @@
 const { dbConnect } = require('../postgres-config/db.connect')
 
+
+
 var nodemailer = require('nodemailer');
 var verificationStatus = '';
 
@@ -13,7 +15,7 @@ const { uuid } = require('uuidv4');
 //User Registration
 const register = async (req, res, next) => {
 
-  let { firstname, lastname, password, email } = req.body.details;
+  let { firstname, lastname, password, email, currentHost } = req.body.details;
   // console.log(req.body)
   console.log('test1')
 
@@ -77,7 +79,7 @@ const register = async (req, res, next) => {
 
 
   try {
-    await sendVerificationEmail(firstname, lastname, email, secretToken, jwtTokenEmailVerify)
+    await sendVerificationEmail(firstname, lastname, email, secretToken, jwtTokenEmailVerify, currentHost)
       .then(() => {
         res.json({ 
           verificationStatus
@@ -117,10 +119,10 @@ var transporter = nodemailer.createTransport({
 });
 
 
-function sendVerificationEmail(firstname, lastname, email, token, jwtToken) {
+function sendVerificationEmail(firstname, lastname, email, token, jwtToken, currentHost) {
 
   let clientName = `${firstname} ${lastname}`
-  let link = `https://intelligense-backend.n1j6mqtj1kv1g.us-east-1.cs.amazonlightsail.com/register-user/verification?token=${token}&email=${email}&jwtToken=${jwtToken}`
+  let link = `http://${currentHost}/emailverification/${token}/${email}/${jwtToken}`
   return new Promise((resolve, reject) => {
 
     console.log('test3')
@@ -179,10 +181,10 @@ const verification = (req, res, next) => {
             email
           ])
             .then(() => {
-              res.send("YOUR ACCOUNT IS VERIFIED")
+              res.send({status: true, message: "created"})
             })
         } else {
-          res.send("SOMETHING WENT WRONG")
+          res.send({status: true, message: "created"})
         }
       }
     )
