@@ -34,7 +34,7 @@ const bulkSearch = async (req, res, next) => {
 
     const id = req.body.details.domain;
 
-    const response = await client.query('SELECT url, email, firstname, lastname, position FROM public."EmailsTable" WHERE url= $1', [
+    const response = await client.query('SELECT url, email, firstname, lastname, position FROM public."Emails" WHERE url= $1', [
       id
     ]);
     await console.log(response)
@@ -55,7 +55,7 @@ const domainSearch = async (req, res, next) => {
     const id = req.body.details.domain;
     console.log(id)
 
-    const response = await client.query('SELECT * FROM public."EmailsTable" WHERE url= $1', [
+    const response = await client.query('SELECT * FROM public."Emails" WHERE url= $1', [
       id
     ]);
     console.log(response)

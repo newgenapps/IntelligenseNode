@@ -17,8 +17,7 @@ const transporter = nodemailer.createTransport({
 
 
 const resetPasswordReqhandler = async (req, res, next) =>{
-    let email = req.body.details.email
-    let currentHost = req.protocol + '://' + req.get('host')
+    let {email, currentHost} = req.body.details
     console.log(email)
     const pool = dbConnect()
     

@@ -1,3 +1,8 @@
+// TO DO
+// MAIL =>
+// hi. -> hi,
+// if u have problems -> problem
+
 const {dbConnect} = require('./postgres-config/db.connect')
 var os = require("os");
 //Import dependencies

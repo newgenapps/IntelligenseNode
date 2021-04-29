@@ -132,7 +132,7 @@ function sendVerificationEmail(firstname, lastname, email, token, jwtToken, curr
       from: '<info@mail.intelligense.io>', // sender address
       to: `<${email}>`, // list of receivers
       subject: 'Verify Your Account', // Subject line
-      html: `<p>Hi. ${clientName}<p><p>Thanks for getting started with <b><i>Intelligense</i></b>!<br/><br/>
+      html: `<p>Hi ${clientName},<p><p>Thanks for getting started with <b><i>Intelligense</i></b>!<br/><br/>
       We need you to confirm your email address to complete the registration<br/><br/>
       Click below to confirm your email address:<br/><br/>
       ${link}</br><br/>
