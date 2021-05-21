@@ -35,6 +35,7 @@
     "pg-hstore": "^2.3.3",
     "randomstring": "^1.1.5",
     "sequelize": "^6.5.1",
+    "twit": "^2.2.11",
     "uuidv4": "^6.2.6",
     "wappalyzer": "^6.5.35"
   },

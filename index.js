@@ -64,6 +64,7 @@ const emailSearch = require('./routes/email-search_routes');
 const techSearch = require('./routes/tech-finder_routes');
 const registerUser = require('./routes/register_routes.js');
 const user = require('./routes/reset-password.routes');
+const socialmedia = require('./routes/social_media.routes');
 
 // Configure app to use route
 app.use('/api-v1/', api);
@@ -71,6 +72,7 @@ app.use('/email-search/', emailSearch);
 app.use('/tech-search/', techSearch);
 app.use('/register-user/', registerUser);
 app.use('/user/', user);
+app.use('/socialmedia/', socialmedia);
 
 // Catch any bad requests
 app.get('*', (req, res) => {
