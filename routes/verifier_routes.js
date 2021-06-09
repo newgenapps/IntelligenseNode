@@ -3,7 +3,7 @@ const router = express.Router();
 const controllers = require('./../controllers/verifier_controllers');
 const auth = require('../authentication/auth');
 
-router.get('/say-something',auth, controllers.saySomething);
+router.get('/say-something', controllers.saySomething);
 router.post('/verifier',auth,controllers.verifier);
 router.post('/bulkEmailVerifier',auth, controllers.bulkEmailVerifier);
 router.post('/bulkDomainVerifier',auth, controllers.bulkDomainVerifier);
