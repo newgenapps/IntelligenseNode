@@ -45,7 +45,15 @@ console.log(req.body.details)
        if(isPaswrdVerified == true && isVerified === "true"){
         res.send({
           status: 200,
-          token: token
+          user: {
+            token: token,
+            firstname: response.rows[0].firstname,
+            lastname: response.rows[0].lastname,
+            email: response.rows[0].email,
+            
+          }
+          
+
         })}else{
         res.send({
           status: 404,
