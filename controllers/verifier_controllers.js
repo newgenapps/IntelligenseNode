@@ -44,11 +44,15 @@ const bulkverifier = async (req, res, next) => {
 
   const { wellFormed, validDomain, validMailbox } = await emailValidator.verify(req.body.post);
   console.log(`wellformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`)
-  res.json({
+  const randomEmailTest = await emailValidator.verify("thiscantbeatrueemailczthisisnotatrueemail@"+req.body.post.split('@')[1]);
+  const acceptAll = await randomEmailTest.validMailbox
+  await console.log(randomEmailTest)
+  await res.json({
     response: {
       "wellformed": wellFormed,
       "validDomain": validDomain,
-      "validMailbox": validMailbox
+      "validMailbox": validMailbox,
+      "acceptAll": acceptAll
     }
   }
   )
@@ -110,6 +114,27 @@ const bulkEmailVerifier = async (req, res, next) => {
   });
 }
 
+//Verifies bulk email Address
+const guestVerifier = async (req, res, next) => {
+  console.log("Resco")
+  const emailValidator = new EmailValidator();
+
+  const { wellFormed, validDomain, validMailbox } = await emailValidator.verify(req.body.post);
+  console.log(`wellformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`)
+  const randomEmailTest = await emailValidator.verify("thiscantbeatrueemailczthisisnotatrueemail@"+req.body.post.split('@')[1]);
+  const acceptAll = await randomEmailTest.validMailbox
+  await console.log(randomEmailTest)
+  await res.json({
+    response: {
+      "wellformed": wellFormed,
+      "validDomain": validDomain,
+      "validMailbox": validMailbox,
+      "acceptAll": acceptAll
+    }
+  }
+  )
+}
+
 
 module.exports.saySomething = saySomething;
 module.exports.verifier = verifier;
@@ -117,3 +142,4 @@ module.exports.bulkEmailVerifier = bulkEmailVerifier;
 module.exports.bulkDomainVerifier = bulkDomainVerifier;
 
 module.exports.bulkverifier = bulkverifier;
+module.exports.guestVerifier = guestVerifier;
