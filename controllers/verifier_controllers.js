@@ -119,7 +119,7 @@ const guestVerifier = async (req, res, next) => {
   console.log("Resco")
   const emailValidator = new EmailValidator();
 
-  const { wellFormed, validDomain, validMailbox } = await emailValidator.verify(req.body.post);
+  const { wellFormed, validDomain, validMailbox } = await emailValidator.verify(req.body.post.trim());
   console.log(`wellformed = ${wellFormed}, validDomain = ${validDomain}, validMailbox = ${validMailbox}`)
   const randomEmailTest = await emailValidator.verify("thiscantbeatrueemailczthisisnotatrueemail@"+req.body.post.split('@')[1]);
   const acceptAll = await randomEmailTest.validMailbox
